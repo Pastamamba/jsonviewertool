@@ -1,38 +1,36 @@
-'use client'
+import React from 'react';
+import { List } from '@mui/material';
+import { ListItemComponent } from "@/components/treeview/ListItemComponent";
+import { useListViewContext } from './ListViewContext';
 
-import {useState} from "react";
-import {List} from "@mui/material";
-import {ListItemComponent} from "@/components/treeview/ListItemComponent";
+export const ListView: React.FC = () => {
+    return (
+            <ListViewContent />
+    );
+}
 
-export const ListView = () => {
-    const [openItems, setOpenItems] = useState({});
-    const [checkedItems, setCheckedItems] = useState({});
-    const items = [
-        { id: 1, label: "L1Low", children: [
-                { id: 11, label: "DlProcedure", children: [
-                        { id: 111, label: "Sub-subitem 1", children: [] },
-                        { id: 112, label: "Sub-subitem 2", children: [] }
-                    ] },
-                { id: 12, label: "UlProcedure", children: [] }
-            ]},
-        { id: 2, label: "Item 2", children: [] },
-        { id: 3, label: "Item 3", children: [
-                { id: 31, label: "Subitem 3", children: [] }
-            ]}
-    ];
+const ListViewContent: React.FC = () => {
+    return (
+        <List className="w-full bg-white">
+            <RenderListItemComponents />
+        </List>
+    );
+}
+
+const RenderListItemComponents: React.FC = () => {
+    const { items } = useListViewContext();
 
     return (
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <>
             {items.map((item) => (
                 <ListItemComponent
                     key={item.id}
                     item={item}
-                    openItems={openItems}
-                    setOpenItems={setOpenItems}
-                    checkedItems={checkedItems}
-                    setCheckedItems={setCheckedItems}
+                    level={0}
                 />
             ))}
-        </List>
+        </>
     );
 }
+
+export default ListView;

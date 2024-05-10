@@ -6,10 +6,10 @@ import { MoreVert as MoreVertIcon } from '@mui/icons-material';
 
 
 export const ListItemMenu = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null); // Muuta tilan tyypiksi HTMLElement | null
     const open = Boolean(anchorEl);
 
-    const handleMenuClick = (event) => {
+    const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
