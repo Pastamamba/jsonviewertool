@@ -21,7 +21,7 @@ const RenderListItemComponents: React.FC = () => {
     const { items } = useListViewContext();
 
     return (
-        <>
+        <div className={'ml-2 mr-2 text-sm'}>
             {items.map((item) => (
                 <ListItemComponent
                     key={item.id}
@@ -29,7 +29,7 @@ const RenderListItemComponents: React.FC = () => {
                     level={0}
                 />
             ))}
-        </>
+        </div>
     );
 }
 
